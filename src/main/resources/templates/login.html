@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Login</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.min.css" />
+</head>
+<body>
+    <section class="hero is-fullheight">
+        <div class="hero-body">
+            <div class="container has-text-centered">
+                <h1 class="title">Iniciar Sesión</h1>
+                <form th:action="@{/login}" method="post">
+                    <div class="field">
+                        <label class="label">Usuario</label>
+                        <div class="control">
+                            <input class="input" type="text" name="username" required>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label">Contraseña</label>
+                        <div class="control">
+                            <input class="input" type="password" name="password" required>
+                        </div>
+                    </div>
+                    <div class="control">
+                        <button class="button is-primary" type="submit">Iniciar Sesión</button>
+                    </div>
+                </form>
+                
+                <div th:if="${param.logout}">
+                    <p>Has cerrado sesión con éxito.</p>
+                </div>
+                <div th:if="${param.error}">
+                    <p>Usuario o contraseña incorrectos.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
