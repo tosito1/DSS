@@ -1,15 +1,15 @@
 package com.example.demo;
 
 import org.springframework.context.annotation.Bean;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.security.web.servlet.util.matcher.MvcRequestMatcher;
 
+@Configuration
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(prePostEnabled = true)
-@EnableWebMvc
 public class SecurityConfig {
 
     @Bean
@@ -17,24 +17,23 @@ public class SecurityConfig {
         http
             .authorizeHttpRequests(authorizeRequests -> { 
                 authorizeRequests 
-                .requestMatchers("/", "/catalogo", "/cart/**").permitAll() 
-                .requestMatchers("/api/products").permitAll()
-                .requestMatchers("/products/**", "/admin").hasRole("ADMIN") 
-                .anyRequest().authenticated(); 
+                .requestMatchers(new MvcRequestMatcher(null, "/cart/**")).permitAll()
+                .requestMatchers(new MvcRequestMatcher(null, "/catalogo")).permitAll()
+                .requestMatchers(new MvcRequestMatcher(null, "/")).permitAll()
+                .requestMatchers(new MvcRequestMatcher(null, "/api/products")).permitAll()
+				.requestMatchers(new MvcRequestMatcher(null, "/admin")).hasRole("ADMIN")
+				.requestMatchers(new MvcRequestMatcher(null, "/products/**")).hasRole("ADMIN")
+				.anyRequest().authenticated(); 
             })
-            .formLogin(formLogin -> formLogin 
-                .loginPage("/login")
-                .defaultSuccessUrl("/catalogo") 
-                .permitAll()
-            )
-            .logout(logout -> logout 
-                .logoutUrl("/logout") 
-                .logoutSuccessUrl("/login?logout")
-            )
-            .exceptionHandling(exceptionHandling -> exceptionHandling
-                .accessDeniedPage("/access-denied")
-            );
-
+            .formLogin(Customizer.withDefaults())
+			
+			.httpBasic(Customizer.withDefaults())
+			
+			.logout(logout -> logout
+				.logoutUrl("/logout")
+				.logoutSuccessUrl("/")
+			);
+        http.csrf().disable();
         return http.build();
     }
 }
