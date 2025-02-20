@@ -1,0 +1,43 @@
+PREFIX ex: <http://www.bookstore.com/ontology.owl#>
+
+# Consulta 1: Lectores que compraron un libro del género CienciaFicción
+SELECT ?lector 
+WHERE { 
+  ?libro ex:tieneGénero ex:CienciaFicción .
+  ?libro ex:compradoPor ?lector . 
+}
+
+# Consulta 2: Títulos de libros del género NoFicción
+SELECT ?titulo 
+WHERE { 
+  ?libro ex:tieneGénero ex:NoFicción .
+  ?libro ex:tieneTítulo ?titulo . 
+}
+
+# Consulta 3: Libros con valoración 4
+SELECT ?titulo 
+WHERE { 
+  ?libro ex:tieneValoración 4 .
+  ?libro ex:tieneTítulo ?titulo . 
+}
+
+# Consulta 4: Libros comprados por cada lector
+SELECT ?lector ?titulo 
+WHERE { 
+  ?libro ex:compradoPor ?lector .
+  ?libro ex:tieneTítulo ?titulo . 
+}
+
+# Consulta 5: Total de libros comprados
+SELECT (COUNT(?libro) AS ?totalLibros) 
+WHERE { 
+  ?libro ex:compradoPor ?lector . 
+}
+
+# Consulta 6: Suma de los precios de libros comprados por cada lector
+SELECT ?lector (SUM(?precio) AS ?totalGasto) 
+WHERE { 
+  ?libro ex:compradoPor ?lector . 
+  ?libro ex:tienePrecio ?precio . 
+} 
+GROUP BY ?lector

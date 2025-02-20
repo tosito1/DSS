@@ -1,0 +1,550 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE Ontology [
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY xml "http://www.w3.org/XML/1998/namespace" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+]>
+
+
+<Ontology xmlns="http://www.w3.org/2002/07/owl#"
+     xml:base="http://www.bookstore.com/ontology.owl"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     ontologyIRI="http://www.bookstore.com/ontology.owl">
+    <Prefix name="" IRI="http://www.w3.org/2002/07/owl#"/>
+    <Prefix name="owl" IRI="http://www.w3.org/2002/07/owl#"/>
+    <Prefix name="rdf" IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+    <Prefix name="xsd" IRI="http://www.w3.org/2001/XMLSchema#"/>
+    <Prefix name="rdfs" IRI="http://www.w3.org/2000/01/rdf-schema#"/>
+    <Declaration>
+        <Class IRI="#Autor"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Editorial"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Género"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Lector"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Libro"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Reseña"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#compradoPor"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#esEditorialDe"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#esGéneroDe"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#escritoPor"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#haEscrito"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#haReseñado"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#publicadoPor"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#tieneGénero"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#tieneReseña"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#contenido"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#nombre"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#tieneAñoPublicación"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#tieneFecha"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#tienePrecio"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#tieneTítulo"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#tieneValoración"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Lector1"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Lector2"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Lector3"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Lector4"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Lector5"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Lector6"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Libro1"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Libro2"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Libro3"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Libro4"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Libro5"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Libro6"/>
+    </Declaration>
+    <EquivalentClasses>
+        <Class IRI="#Editorial"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#esEditorialDe"/>
+            <Class IRI="#Libro"/>
+        </ObjectSomeValuesFrom>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#Género"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#esGéneroDe"/>
+            <Class IRI="#Libro"/>
+        </ObjectSomeValuesFrom>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#Lector"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#compradoPor"/>
+            <Class IRI="#Libro"/>
+        </ObjectSomeValuesFrom>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#Libro"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#escritoPor"/>
+            <Class IRI="#Autor"/>
+        </ObjectSomeValuesFrom>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#Libro"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#tieneGénero"/>
+            <Class IRI="#Género"/>
+        </ObjectSomeValuesFrom>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#LibroCienciaFicciónBarato"/>
+        <ObjectIntersectionOf>
+            <ObjectHasValue>
+                <ObjectProperty IRI="#tieneGénero"/>
+                <NamedIndividual IRI="#GeneroCienciaFicción"/>
+            </ObjectHasValue>
+            <DataSomeValuesFrom>
+                <DataProperty IRI="#tienePrecio"/>
+                <DatatypeRestriction>
+                    <Datatype abbreviatedIRI="xsd:decimal"/>
+                    <FacetRestriction facet="&xsd;maxExclusive">
+                        <Literal datatypeIRI="&xsd;integer">20</Literal>
+                    </FacetRestriction>
+                </DatatypeRestriction>
+            </DataSomeValuesFrom>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#LibroDeLujo"/>
+        <DataSomeValuesFrom>
+            <DataProperty IRI="#tienePrecio"/>
+            <DatatypeRestriction>
+                <Datatype abbreviatedIRI="xsd:decimal"/>
+                <FacetRestriction facet="&xsd;minInclusive">
+                    <Literal datatypeIRI="&xsd;integer">50</Literal>
+                </FacetRestriction>
+            </DatatypeRestriction>
+        </DataSomeValuesFrom>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#LibroEspecífico"/>
+        <ObjectExactCardinality cardinality="1">
+            <ObjectProperty IRI="#tieneGénero"/>
+            <Class IRI="#Género"/>
+        </ObjectExactCardinality>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#LibroPopular"/>
+        <DataSomeValuesFrom>
+            <DataProperty IRI="#tienePrecio"/>
+            <DatatypeRestriction>
+                <Datatype abbreviatedIRI="xsd:decimal"/>
+                <FacetRestriction facet="&xsd;maxExclusive">
+                    <Literal datatypeIRI="&xsd;integer">20</Literal>
+                </FacetRestriction>
+            </DatatypeRestriction>
+        </DataSomeValuesFrom>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#Reseña"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#haReseñado"/>
+            <Class IRI="#Lector"/>
+        </ObjectSomeValuesFrom>
+    </EquivalentClasses>
+    <SubClassOf>
+        <Class IRI="#Biografía"/>
+        <Class IRI="#Género"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#CienciaFicción"/>
+        <Class IRI="#Género"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Ebook"/>
+        <Class IRI="#Libro"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Fantasía"/>
+        <Class IRI="#Género"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Ficción"/>
+        <Class IRI="#Género"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#LibroCienciaFicciónBarato"/>
+        <Class IRI="#Libro"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#LibroDeLujo"/>
+        <Class IRI="#Libro"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#LibroEspecífico"/>
+        <Class IRI="#Libro"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#LibroFísico"/>
+        <Class IRI="#Libro"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#LibroPopular"/>
+        <Class IRI="#Libro"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#NoFicción"/>
+        <Class IRI="#Género"/>
+    </SubClassOf>
+    <DisjointClasses>
+        <Class IRI="#Autor"/>
+        <Class IRI="#Editorial"/>
+        <Class IRI="#Género"/>
+        <Class IRI="#Lector"/>
+        <Class IRI="#Libro"/>
+        <Class IRI="#Reseña"/>
+    </DisjointClasses>
+    <ClassAssertion>
+        <Class IRI="#Lector"/>
+        <NamedIndividual IRI="#Lector1"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Lector"/>
+        <NamedIndividual IRI="#Lector2"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Lector"/>
+        <NamedIndividual IRI="#Lector3"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Lector"/>
+        <NamedIndividual IRI="#Lector4"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Lector"/>
+        <NamedIndividual IRI="#Lector5"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Lector"/>
+        <NamedIndividual IRI="#Lector6"/>
+    </ClassAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#compradoPor"/>
+        <NamedIndividual IRI="#Libro1"/>
+        <NamedIndividual IRI="#Lector1"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#tieneGénero"/>
+        <NamedIndividual IRI="#Libro1"/>
+        <NamedIndividual IRI="#CienciaFicción"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#compradoPor"/>
+        <NamedIndividual IRI="#Libro2"/>
+        <NamedIndividual IRI="#Lector2"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#tieneGénero"/>
+        <NamedIndividual IRI="#Libro2"/>
+        <NamedIndividual IRI="#NoFicción"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#compradoPor"/>
+        <NamedIndividual IRI="#Libro3"/>
+        <NamedIndividual IRI="#Lector3"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#tieneGénero"/>
+        <NamedIndividual IRI="#Libro3"/>
+        <NamedIndividual IRI="#Fantasía"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#compradoPor"/>
+        <NamedIndividual IRI="#Libro4"/>
+        <NamedIndividual IRI="#Lector4"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#tieneGénero"/>
+        <NamedIndividual IRI="#Libro4"/>
+        <NamedIndividual IRI="#Ficción"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#compradoPor"/>
+        <NamedIndividual IRI="#Libro5"/>
+        <NamedIndividual IRI="#Lector5"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#tieneGénero"/>
+        <NamedIndividual IRI="#Libro5"/>
+        <NamedIndividual IRI="#CienciaFicción"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#compradoPor"/>
+        <NamedIndividual IRI="#Libro6"/>
+        <NamedIndividual IRI="#Lector6"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#tieneGénero"/>
+        <NamedIndividual IRI="#Libro6"/>
+        <NamedIndividual IRI="#Ficción"/>
+    </ObjectPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nombre"/>
+        <NamedIndividual IRI="#Lector1"/>
+        <Literal datatypeIRI="&xsd;string">Juan Perez</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nombre"/>
+        <NamedIndividual IRI="#Lector2"/>
+        <Literal datatypeIRI="&xsd;string">Maria Garcia</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nombre"/>
+        <NamedIndividual IRI="#Lector3"/>
+        <Literal datatypeIRI="&xsd;string">Carlos Gomez</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nombre"/>
+        <NamedIndividual IRI="#Lector4"/>
+        <Literal datatypeIRI="&xsd;string">Ana Torres</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nombre"/>
+        <NamedIndividual IRI="#Lector5"/>
+        <Literal datatypeIRI="&xsd;string">Luis Ramirez</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#nombre"/>
+        <NamedIndividual IRI="#Lector6"/>
+        <Literal datatypeIRI="&xsd;string">Sofia Lopez</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#tienePrecio"/>
+        <NamedIndividual IRI="#Libro1"/>
+        <Literal datatypeIRI="&xsd;decimal">19.99</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#tieneTítulo"/>
+        <NamedIndividual IRI="#Libro1"/>
+        <Literal datatypeIRI="&xsd;string">Dune</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#tieneValoración"/>
+        <NamedIndividual IRI="#Libro1"/>
+        <Literal datatypeIRI="&xsd;integer">4</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#tienePrecio"/>
+        <NamedIndividual IRI="#Libro2"/>
+        <Literal datatypeIRI="&xsd;decimal">14.99</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#tieneTítulo"/>
+        <NamedIndividual IRI="#Libro2"/>
+        <Literal datatypeIRI="&xsd;string">Sapiens</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#tieneValoración"/>
+        <NamedIndividual IRI="#Libro2"/>
+        <Literal datatypeIRI="&xsd;integer">5</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#tienePrecio"/>
+        <NamedIndividual IRI="#Libro3"/>
+        <Literal datatypeIRI="&xsd;decimal">25.99</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#tieneTítulo"/>
+        <NamedIndividual IRI="#Libro3"/>
+        <Literal datatypeIRI="&xsd;string">El Hobbit</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#tieneValoración"/>
+        <NamedIndividual IRI="#Libro3"/>
+        <Literal datatypeIRI="&xsd;integer">5</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#tienePrecio"/>
+        <NamedIndividual IRI="#Libro4"/>
+        <Literal datatypeIRI="&xsd;decimal">18.50</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#tieneTítulo"/>
+        <NamedIndividual IRI="#Libro4"/>
+        <Literal datatypeIRI="&xsd;string">1984</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#tieneValoración"/>
+        <NamedIndividual IRI="#Libro4"/>
+        <Literal datatypeIRI="&xsd;integer">4</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#tienePrecio"/>
+        <NamedIndividual IRI="#Libro5"/>
+        <Literal datatypeIRI="&xsd;decimal">21.99</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#tieneTítulo"/>
+        <NamedIndividual IRI="#Libro5"/>
+        <Literal datatypeIRI="&xsd;string">Neuromante</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#tieneValoración"/>
+        <NamedIndividual IRI="#Libro5"/>
+        <Literal datatypeIRI="&xsd;integer">4</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#tienePrecio"/>
+        <NamedIndividual IRI="#Libro6"/>
+        <Literal datatypeIRI="&xsd;decimal">10.50</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#tieneTítulo"/>
+        <NamedIndividual IRI="#Libro6"/>
+        <Literal datatypeIRI="&xsd;string">El Principito</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#tieneValoración"/>
+        <NamedIndividual IRI="#Libro6"/>
+        <Literal datatypeIRI="&xsd;integer">5</Literal>
+    </DataPropertyAssertion>
+        <ObjectPropertyDomain>
+        <ObjectProperty IRI="#compradoPor"/>
+        <Class IRI="#Libro"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#esEditorialDe"/>
+        <Class IRI="#Libro"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#esGéneroDe"/>
+        <Class IRI="#Libro"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#escritoPor"/>
+        <Class IRI="#Libro"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#haEscrito"/>
+        <Class IRI="#Autor"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#haReseñado"/>
+        <Class IRI="#Lector"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#publicadoPor"/>
+        <Class IRI="#Libro"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#tieneGénero"/>
+        <Class IRI="#Libro"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#tieneReseña"/>
+        <Class IRI="#Libro"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#compradoPor"/>
+        <Class IRI="#Lector"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#esEditorialDe"/>
+        <Class IRI="#Editorial"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#esGéneroDe"/>
+        <Class IRI="#Género"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#escritoPor"/>
+        <Class IRI="#Autor"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#haEscrito"/>
+        <Class IRI="#Libro"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#haReseñado"/>
+        <Class IRI="#Reseña"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#publicadoPor"/>
+        <Class IRI="#Editorial"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#tieneGénero"/>
+        <Class IRI="#Género"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#tieneReseña"/>
+        <Class IRI="#Reseña"/>
+    </ObjectPropertyRange>
+</Ontology>
+
+
+
+<!-- Generated by the OWL API (version 3.4.2) http://owlapi.sourceforge.net -->
+
